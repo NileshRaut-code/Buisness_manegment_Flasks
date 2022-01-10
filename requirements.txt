@@ -1,6 +1,4 @@
-pysqlite3
 flask
-flask_mail
+pysqlite3
 pandas
-xlwt
-
+datetime
