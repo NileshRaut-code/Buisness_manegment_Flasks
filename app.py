@@ -1,15 +1,15 @@
+import os
 from flask import *
 import sqlite3
 from datetime import date
-#import xlwt
-#from xlwt import Workbook
+import xlwt
+from xlwt import Workbook
 import pandas as pd
-#import stat
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("index.html");
 
 @app.route("/add")
 def add_student():
@@ -57,8 +57,8 @@ def student_info():
     cursor = connection.cursor()
     cursor.execute("select * from Student_Info")
     rows = cursor.fetchall()
-    
-    
+    df = pd.read_sql_query("SELECT * from Student_Info", connection)
+    df.to_excel('custmer.xls')
     return render_template("student_info.html",rows = rows)
 
 
@@ -132,4 +132,4 @@ def stock():
     return render_template('stock.html',msg=result)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug = True')  
